@@ -13,7 +13,7 @@ ATCA_STATUS check_config_aes_enable(void)
         return status;   
     }
 
-    if ((aes_enable & AES_CONFIG_ENABLE_BIT_MASK) == 0)
+    if ((aes_enable & AES_CONFIG_ENABLE_BIT_MASK) ！= 1)
     {
         return ATCA_BAD_PARAM;
     }
@@ -25,7 +25,7 @@ ATCA_STATUS check_config_aes_enable(void)
         return status;   
     }
 
-    if ((aes_enable & 0x1c ) >> 2 == AES_KEYTYPE)
+    if ((aes_enable & 0x1c ) >> 2 != AES_KEYTYPE)
     {
         return ATCA_BAD_PARAM;
     }
@@ -57,7 +57,12 @@ ATCA_STATUS encryptwrite(uint8_t *data, size_t length)
     get_atecc608cfg(&cfg);
     ATCA_STATUS status = atcab_init(&cfg);
 
-    check_config_aes_enable();
+    status = check_config_aes_enable();
+    if (status != ATCA_SUCCESS)
+    {
+        printf("bad device config:%d\n", status);
+        return ATCA_BAD_PARAM;
+    }
 
     // Load AES keys into Device Slot
     uint8_t aeskeys[32];
