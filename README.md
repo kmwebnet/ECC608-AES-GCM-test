@@ -1,7 +1,7 @@
 # ECC608-AES-GCM-Test
 
-This tests AES-GCM function by storing and using key at ATECC608 secret slot.  
-all of components for running AES-GCM command will store into ATECC608's slot 8.   
+This tests AES-GCM function by storing and using key at ATECC608A secret slot.  
+all of components for running AES-GCM command will store into ATECC608A's slot 8.   
 
 IV(12byte) ,tag(16)bytes ,to be crypted data (240)bytes
 
@@ -13,7 +13,7 @@ this is ideal to store secret information inside the device securely by prohibit
 
   Platformio with VS Code environment.  
   install "Espressif 32" platform definition on Platformio
-  configure ATECC608 slot 5 to work with AES command properly.
+  configure ATECC608A slot 5 to work with AES command properly.
 
 # Environment reference
   
@@ -28,7 +28,7 @@ this is ideal to store secret information inside the device securely by prohibit
       I2C 1 SDA GPIO_NUM_21
       I2C 1 SCL GPIO_NUM_22
           
-  Microchip ATECC608(on I2C port 1)  
+  Microchip ATECC608A(on I2C port 1)  
 
 # Usage
 
